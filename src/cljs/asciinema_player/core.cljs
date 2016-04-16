@@ -282,10 +282,7 @@
   failure."
   [player]
   (let [url (:asciicast-url player)]
-    (GET url
-         {:response-format :raw
-          :handler #(dispatch player [:asciicast-response %])
-          :error-handler #(dispatch player [:bad-response %])})
+    (dispatch player [:asciicast-response url])
     (show-spinner player)))
 
 (defn asciicast-loaded?
